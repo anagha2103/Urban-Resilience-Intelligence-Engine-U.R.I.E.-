@@ -1,0 +1,73 @@
+import streamlit as st
+
+# --- DASHBOARD CONFIG ---
+st.set_page_config(page_title="U.R.I.E. | Equity & Pivot", layout="wide")
+
+# UI Styling
+st.markdown("""
+    <style>
+    .main { background-color: #0e1117; }
+    .stMetric { background-color: #161b22; border: 1px solid #30363d; padding: 15px; border-radius: 10px; }
+    </style>
+    """, unsafe_allow_html=True)
+
+# --- SHARED STATE ---
+if 'base_temp' not in st.session_state:
+    st.session_state.base_temp = 35.0
+
+# --- WINDOW 6: THERMAL EQUITY LENS ---
+def window_6_equity():
+    st.header("⚖️ Window 6: Thermal Equity Lens")
+    st.write("Visualizing the Heat Gap and Environmental Justice.")
+    
+    base = st.session_state.base_temp
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("🏙️ Affluent Zone")
+        trees_a = st.slider("Tree Cover % (High Income)", 0, 100, 45)
+        # Trees cool the area
+        temp_a = base - (trees_a * 0.1)
+        st.metric("Micro-Temp", f"{temp_a:.1f}°C")
+        st.caption("High Canopy = Cooler Micro-climate")
+
+    with col2:
+        st.subheader("🏘️ Vulnerable Zone")
+        trees_b = st.slider("Tree Cover % (Low Income)", 0, 100, 10)
+        # Concrete and lack of trees heat the area (Urban Heat Island)
+        temp_b = base + ((100 - trees_b) * 0.08)
+        st.metric("Micro-Temp", f"{temp_b:.1f}°C", delta="Heat Burden", delta_color="inverse")
+        st.caption("Concrete Density = Heat Trap")
+
+    gap = temp_b - temp_a
+    st.divider()
+    st.error(f"### The Heat Gap: {gap:.1f}°C")
+    st.write("This temperature difference causes higher electricity bills and health risks for low-income residents.")
+
+# --- WINDOW 5: LIVELIHOOD PIVOT ENGINE ---
+def window_5_pivot():
+    st.header("🌱 Window 5: Livelihood Pivot Engine")
+    
+    jobs = {
+        "Delivery Rider": {"risk": 90, "pivot": "EV Logistics Coordinator", "skills": "Fleet Management, Battery Safety"},
+        "Construction": {"risk": 85, "pivot": "Retrofit Technician", "skills": "Cool-Roofing, Smart Insulation"},
+        "Street Vendor": {"risk": 80, "pivot": "Urban Farm Specialist", "skills": "Hydroponics, Vertical Cooling"}
+    }
+    
+    selected = st.selectbox("Select Current Occupation:", list(jobs.keys()))
+    job_data = jobs[selected]
+    
+    c1, c2 = st.columns(2)
+    with c1:
+        st.write(f"**Heat Exposure Risk:** {job_data['risk']}%")
+        st.progress(job_data['risk'])
+    
+    with c2:
+        st.success(f"**Green Pivot:** {job_data['pivot']}")
+        st.write(f"**Skills to learn:** {job_data['skills']}")
+
+# --- APP FLOW ---
+window_6_equity()
+st.markdown("<br><hr><br>", unsafe_allow_html=True)
+window_5_pivot()
