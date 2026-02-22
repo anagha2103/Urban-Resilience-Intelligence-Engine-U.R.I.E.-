@@ -1,148 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Urban Resilience Intelligence Engine</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U.R.I.E - Urban Resilience Intelligence Engine</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: white;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        header {
-            text-align: center;
-            padding: 30px;
-            font-size: 28px;
-            font-weight: bold;
-            background: #0ea5e9;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .container {
-            padding: 40px;
-        }
+body {
+    background: radial-gradient(circle at 20% 20%, #0a1a2f, #050b15 60%);
+    font-family: 'Poppins', sans-serif;
+    color: #cfd8ff;
+    height: 100vh;
+    overflow-x: hidden;
+}
 
-        .card {
-            background: #1e293b;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
+/* HEADER */
+.header {
+    text-align: center;
+    padding-top: 60px;
+}
 
-        h2 {
-            margin-top: 0;
-            color: #38bdf8;
-        }
+.logo-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 20px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #0ff, #4b5cff);
+    box-shadow: 0 0 40px rgba(0, 153, 255, 0.6);
+}
 
-        input[type=range] {
-            width: 100%;
-            margin: 10px 0 20px;
-        }
+.title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 64px;
+    letter-spacing: 6px;
+    background: linear-gradient(to right, #00e0ff, #7f8cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        button {
-            padding: 10px 20px;
-            background: #0ea5e9;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.subtitle {
+    margin-top: 10px;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: #6d85c7;
+}
 
-        button:hover {
-            background: #0284c7;
-        }
+/* MAIN PANEL */
+.panel {
+    width: 80%;
+    margin: 60px auto;
+    padding: 50px;
+    border-radius: 20px;
+    background: rgba(10, 25, 50, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    box-shadow: 0 0 50px rgba(0, 140, 255, 0.2);
+}
 
-        .output {
-            margin-top: 15px;
-            font-weight: bold;
-            font-size: 18px;
-        }
-    </style>
+.status {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #4dd0ff;
+    margin-bottom: 30px;
+}
+
+.section-tag {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #00f0ff;
+    margin-bottom: 20px;
+}
+
+.heading {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #9fb4ff;
+    max-width: 900px;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    flex: 1;
+    padding: 25px;
+    border-radius: 16px;
+    background: rgba(15, 30, 60, 0.6);
+    border: 1px solid rgba(0, 200, 255, 0.15);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 30px rgba(0, 180, 255, 0.3);
+}
+
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #00e0ff;
+}
+
+.card p {
+    font-size: 14px;
+    color: #9fb4ff;
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    🌆 Urban Resilience Intelligence Engine
-</header>
+<div class="header">
+    <div class="logo-icon"></div>
+    <div class="title">U.R.I.E</div>
+    <div class="subtitle">URBAN RESILIENCE INTELLIGENCE ENGINE</div>
+</div>
 
-<div class="container">
+<div class="panel">
 
-    <!-- Heat Risk Engine -->
-    <div class="card">
-        <h2>🔥 Heat Risk Engine</h2>
+    <div class="status">● SYSTEM ONLINE • LIVE DATA FEEDS ACTIVE</div>
 
-        <label>Tree Cover (%)</label>
-        <input type="range" min="0" max="100" value="50" id="tree">
+    <div class="section-tag">ABOUT THE PLATFORM</div>
 
-        <label>Building Density (%)</label>
-        <input type="range" min="0" max="100" value="50" id="building">
-
-        <label>Traffic Level (%)</label>
-        <input type="range" min="0" max="100" value="50" id="traffic">
-
-        <button onclick="calculateHeat()">Calculate Heat Score</button>
-
-        <div class="output" id="heatResult"></div>
+    <div class="heading">
+        Climate Intelligence for India's Urban Workforce
     </div>
 
-    <!-- Behaviour Impact Simulator -->
-    <div class="card">
-        <h2>🧠 Behaviour Impact Simulator</h2>
-
-        <label>AC Usage (%)</label>
-        <input type="range" min="0" max="100" value="50" id="ac">
-
-        <label>Public Transport Usage (%)</label>
-        <input type="range" min="0" max="100" value="50" id="transport">
-
-        <button onclick="calculateBehaviour()">Simulate Impact</button>
-
-        <div class="output" id="behaviourResult"></div>
+    <div class="description">
+        U.R.I.E is an advanced urban climate analytics platform fusing real-time meteorological data,
+        socioeconomic modelling, and AI inference — mapping heat vulnerability, quantifying
+        climate-driven job risk, and charting equitable green career pathways across India's cities.
     </div>
 
-    <!-- Sustainability Score -->
-    <div class="card">
-        <h2>🌱 Sustainability Score</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>🔥 Heat Risk Mapping</h3>
+            <p>AI-powered urban heat vulnerability prediction and spatial modelling.</p>
+        </div>
 
-        <button onclick="calculateSustainability()">Generate Score</button>
+        <div class="card">
+            <h3>🌍 City Analytics</h3>
+            <p>Integrated climate + workforce data intelligence dashboards.</p>
+        </div>
 
-        <div class="output" id="sustainResult"></div>
+        <div class="card">
+            <h3>💰 Green Job Risk</h3>
+            <p>Climate-driven economic exposure and workforce transition analysis.</p>
+        </div>
     </div>
 
 </div>
-
-<script>
-    function calculateHeat() {
-        let tree = parseInt(document.getElementById("tree").value);
-        let building = parseInt(document.getElementById("building").value);
-        let traffic = parseInt(document.getElementById("traffic").value);
-
-        let score = (100 - tree) + building + traffic;
-        document.getElementById("heatResult").innerHTML =
-            "🔥 Heat Vulnerability Score: " + score;
-    }
-
-    function calculateBehaviour() {
-        let ac = parseInt(document.getElementById("ac").value);
-        let transport = parseInt(document.getElementById("transport").value);
-
-        let impact = ac - transport;
-        document.getElementById("behaviourResult").innerHTML =
-            "⚡ Energy Stress Impact: " + impact;
-    }
-
-    function calculateSustainability() {
-        let score = Math.floor(Math.random() * 100);
-        document.getElementById("sustainResult").innerHTML =
-            "🌍 Overall Sustainability Score: " + score;
-    }
-</script>
 
 </body>
 </html>
