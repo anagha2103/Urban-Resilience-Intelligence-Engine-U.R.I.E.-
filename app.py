@@ -11,9 +11,19 @@ import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
 import time
+import streamlit as st
+import streamlit.components.v1 as components
+import os
+
+html_path = os.path.join("templates", "urie_all_6_windows.html")
+
+with open(html_path, "r", encoding="utf-8") as f:
+    html_code = f.read()
+
+components.html(html_code, height=1200, scrolling=True)
 
 try:
-    import pydeck as pdk
+    import pydeck as pdkstreamlit
     PYDECK_AVAILABLE = True
 except ImportError:
     PYDECK_AVAILABLE = False
